@@ -65,7 +65,6 @@ function authentication(){
         }).done(function(){
 	        progress.progressTimer('complete');
 	    });
-	
 }
 
 function authentication_perfil(id_user){
