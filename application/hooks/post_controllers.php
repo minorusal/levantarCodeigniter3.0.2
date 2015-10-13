@@ -1,5 +1,5 @@
 <?php
-defined( 'BASEPATH') exit('No direct script access allowed'); 
+defined( 'BASEPATH')OR exit('No direct script access allowed'); 
 class check_session extends Pi_Controller
 {
 	private $ci;
@@ -9,7 +9,7 @@ class check_session extends Pi_Controller
 	}	
 
 	public function check_activity(){
-		print_debug('post');
+		//rint_debug('post');
 		$uri_string         = $this->query_uri_string();
 		$sites_availables   = $this->ci->sites_availables;
 		$sites_availables[] = 'sign_up';

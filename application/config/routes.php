@@ -63,8 +63,8 @@ $route['inicio']                   = 'inicio/index';
 
 /*LOGIN*/
 $route['login']                    = 'login/index';
-// $route['login/authentication']     = 'login/authentication';
-// $route['login/valindando']         = 'login/redireccion';
-// $route['logout']                   = 'login/logout';
+$route['login/authentication']     = 'login/authentication';
+$route['login/valindando']         = 'login/redireccion';
+$route['logout']                   = 'login/logout';
 /*******/
 
