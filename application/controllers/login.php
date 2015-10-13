@@ -24,6 +24,7 @@ class Login extends Pi_Controller {
     * @return boolean
     */
 	function authentication(){
-		print_debug('llega a autenficar');
+		$usuario = $this->ajax_post(false);
+		print_debug($usuario);
 	}
 }

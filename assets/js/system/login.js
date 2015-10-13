@@ -26,7 +26,7 @@ jQuery(document).ready(function(){
 function authentication(){
 	alert('llega');
 }
-function authenticatiocn(){
+function authentication(){
 	var progress = progress_initialized('progress');
 	var user     = jQuery('#user').val();
 	var pwd      = jQuery('#pwd').val();
