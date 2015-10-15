@@ -23,7 +23,7 @@ class Login extends Pi_Controller {
     * @return boolean
     */
 	function authentication(){
-		$usuario = $this->ajax_post(false);
-		print_debug($usuario);
+		$this->load->model('users_model');
+		$id_user    = $this->ajax_post('id_user');
 	}
 }
