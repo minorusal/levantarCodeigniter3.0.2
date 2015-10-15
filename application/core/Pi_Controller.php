@@ -5,9 +5,9 @@ class Pi_Controller extends CI_Controller {
 
     public function __construct(){
         parent::__construct();
-        //$this->removeCache();
-        //$this->lang_load("system","es_ES");
-        //$this->lang_load("navigate");
+       // $this->removeCache();
+        $this->lang_load("system","es_ES");
+        $this->lang_load("navigate");
         if($this->session->userdata('is_logged')){
             $this->sites                 = $this->sites_privilege_navigate();
             $this->sites_availables      = $this->sites['sites'];

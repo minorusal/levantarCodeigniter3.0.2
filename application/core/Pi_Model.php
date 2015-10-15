@@ -16,6 +16,10 @@ class Pi_Model extends CI_Model {
 		$this->tbl['perfiles']     = $this->db1.'.sys_perfiles'; 
 		$this->tbl['personales']   = $this->db1.'.sys_personales';  
 		$this->tbl['sucursales']   = $this->db1.'.sys_sucursales'; 
-		$this->tbl['usuarios']     = $this->db1.'.sys_usuarios'; 
+		$this->tbl['usuarios']     = $this->db1.'.sys_usuarios';
+
+		$this->db2 = 'pi_mx';
+		$this->tbl['administracion_areas']       = $this->db2.'.av_administracion_areas'; 
+		$this->tbl['administracion_puestos']     = $this->db2.'.av_administracion_puestos';   
 	}
 }

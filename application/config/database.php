@@ -75,9 +75,9 @@ $query_builder = TRUE;
 
 $db['global_system'] = array(
 	'dsn'	   => '',
-	'hostname' => '127.0.0.1',
+	'hostname' => 'localhost',
 	'username' => 'root',
-	'password' => '',
+	'password' => 'root',
 	'database' => 'pi_system',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
@@ -97,9 +97,9 @@ $db['global_system'] = array(
 
 $db['mx'] = array(
 	'dsn'	   => '',
-	'hostname' => '127.0.0.1',
+	'hostname' => 'localhost',
 	'username' => 'root',
-	'password' => '',
+	'password' => 'root',
 	'database' => 'pi_mx',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
