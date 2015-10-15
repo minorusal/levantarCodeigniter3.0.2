@@ -11,7 +11,6 @@ class Login extends Pi_Controller {
     * @return void
     */
 	public function index(){
-		//print_debug('entro a index/login');
 		if($this->session->userdata('is_logged')){
 			redirect('inicio');
         }else{
