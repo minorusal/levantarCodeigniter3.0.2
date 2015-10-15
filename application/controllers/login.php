@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class login extends Pi_Controller {
+class Login extends Pi_Controller {
 	public function __construct(){
 		parent::__construct();
         $this->lang_load("login");
@@ -11,7 +11,7 @@ class login extends Pi_Controller {
     * @return void
     */
 	public function index(){
-		print_debug('entro a login/index');
+		//print_debug('entro a index/login');
 		if($this->session->userdata('is_logged')){
 			redirect('inicio');
         }else{
@@ -24,6 +24,7 @@ class login extends Pi_Controller {
     * @return boolean
     */
 	function authentication(){
-		print_debug($this->ajax_post(false));
+		$usuario = $this->ajax_post(false);
+		print_debug($usuario);
 	}
 }

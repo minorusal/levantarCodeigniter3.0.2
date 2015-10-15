@@ -1,5 +1,20 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Pi_Controller extends CI_Controller {
+
+    public $sites_availables;
+
+    public function __construct(){
+        parent::__construct();
+        //$this->removeCache();
+        //$this->lang_load("system","es_ES");
+        //$this->lang_load("navigate");
+        if($this->session->userdata('is_logged')){
+            $this->sites                 = $this->sites_privilege_navigate();
+            $this->sites_availables      = $this->sites['sites'];
+            $this->sites_panel           = $this->sites['modules'];
+            $this->sucursales_availables = $this->sites['sucursales'];
+        }
+    }
 	/**
     * carga el archivo Lang de idioma
     * @param string $name
@@ -67,6 +82,35 @@ class Pi_Controller extends CI_Controller {
     		$lang_item = text_format_tpl($lang_item);
     	}
     	return $lang_item;
+    }
+
+    /**
+    * Si $post es false devuleve un arreglo con el total de items 
+    * recibidos por el metodo POST[]
+    * de lo contrario devolvera el item con respecto al index $post
+    * @param int $post
+    * @return array
+    */
+    public function ajax_post($post){
+        if($post===false){
+            return $this->input->post();
+        }
+        return $this->input->post($post);
+    }
+
+    /**
+    * Carga la base de datos de acuerdo al pais de origen
+    * del usuario (mx,cr,etc)
+    * @param string $db
+    * @return void
+    */
+    public function load_database($bd){
+        if($bd!=""){
+            $load = $this->load->database($bd,TRUE);
+            if(!$load){
+                return true;
+            }
+        }
     }
 } 
 ?>

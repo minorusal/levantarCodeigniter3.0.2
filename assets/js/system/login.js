@@ -24,47 +24,9 @@ jQuery(document).ready(function(){
 
 });
 function authentication(){
-	var progress = progress_initialized('progress');
-	var user     = jQuery('#user').val();
-	var pwd      = jQuery('#pwd').val();
-	var id_user  = jQuery('#id_user').val();
-	jQuery.ajax({
-		type: "POST",
-		url: "login/authentication",
-		dataType: 'json',
-		data: {id_user: id_user,user: user, pwd: pwd},
-		success: function(data){
-			//alert(data);
-			switch (data){
-				case 0:
-					jQuery(location).attr('href','login');
-					break
-				case 1:
-					jQuery(location).attr('href','inicio');
-					break
-				default:
-					var promp_content = {
-									content_01:{
-										html:data,
-										buttons:{ }
-									}
-								};
-					jQuery.prompt(promp_content);
-					setTimeout("clean_form_login()",60000);
-					break
-			}
-		}
-	}).error(function(){
-       		progress.progressTimer('error', {
-	            errorText:'ERROR!',
-	            onFinish:function(){
-	            }
-            });
-        }).done(function(){
-	        progress.progressTimer('complete');
-	    });
+	alert('llega');
 }
-function authenticatiocn(){
+function authentication(){
 	var progress = progress_initialized('progress');
 	var user     = jQuery('#user').val();
 	var pwd      = jQuery('#pwd').val();
@@ -103,7 +65,6 @@ function authenticatiocn(){
         }).done(function(){
 	        progress.progressTimer('complete');
 	    });
-	
 }
 
 function authentication_perfil(id_user){

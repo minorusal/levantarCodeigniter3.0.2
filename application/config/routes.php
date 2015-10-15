@@ -52,9 +52,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*DEFAULT*/
 $route['default_controller']       = 'login/index';
+$route['sign_up']                  = 'sign_up/index';
+$route['forgot_pwd']               = 'sign_up/forgot_pwd';
+
+
+
+$route['404_override']             = 'error404';
+$route['inicio']                   = 'inicio/index';
+/********/
 
 /*LOGIN*/
 $route['login']                    = 'login/index';
 $route['login/authentication']     = 'login/authentication';
 $route['login/valindando']         = 'login/redireccion';
 $route['logout']                   = 'login/logout';
+/*******/
+
