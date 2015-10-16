@@ -67,7 +67,6 @@ class login extends Pi_Controller {
 		if((is_array($query_result))&&(!empty($query_result))){
 			foreach ($query_result as $key => $value) {
 				# code...
-				//print_debug($value['user_id_sucursales']);
 				$data[] = array(
 								'id_usuario'      => $value['id_usuario'],
 								'id_personal'     => $value['id_personal'],
