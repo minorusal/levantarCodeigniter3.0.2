@@ -34,12 +34,14 @@ class login extends Pi_Controller {
 	function authentication(){
 		$this->load->model('users_model');
 		$id_user    = $this->input->post('id_user');
+		//print_debug($id_user);
 		if($id_user == ''){
 			$user   = $this->__encript_md5($this->ajax_post('user'));
 			$pwd    = $this->__encript_md5($this->ajax_post('pwd'));
 			$data   = $this->users_model->search_user_for_login($user,$pwd);
 		}else{
 			$data = $this->search_user_for_id($id_user);
+			//print_debug($data);
 		}
 		$data       = $this->query_result_to_array($data);
 		$data_count = count($data);

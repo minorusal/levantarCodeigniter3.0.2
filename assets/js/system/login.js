@@ -23,9 +23,7 @@ jQuery(document).ready(function(){
     });
 
 });
-function authentication(){
-	alert('llega');
-}
+
 function authentication(){
 	var progress = progress_initialized('progress');
 	var user     = jQuery('#user').val();
