@@ -33,15 +33,13 @@ class login extends Pi_Controller {
     */
 	function authentication(){
 		$this->load->model('users_model');
-		$id_user    = $this->input->post('id_user');
-		//print_debug($id_user);
+		$id_user    = $this->ajax_post('id_user');
 		if($id_user == ''){
 			$user   = $this->__encript_md5($this->ajax_post('user'));
 			$pwd    = $this->__encript_md5($this->ajax_post('pwd'));
 			$data   = $this->users_model->search_user_for_login($user,$pwd);
 		}else{
-			$data = $this->search_user_for_id($id_user);
-			//print_debug($data);
+			$data = $this->users_model->search_user_for_id($id_user);
 		}
 		$data       = $this->query_result_to_array($data);
 		$data_count = count($data);
@@ -50,6 +48,7 @@ class login extends Pi_Controller {
 			if($data_count>1){
 				echo json_encode($this->tbl_multiples_perfiles($data));
 			}else{
+
 				$this->session->set_userdata($data[0]);
 				echo 1;
 			}
@@ -65,46 +64,47 @@ class login extends Pi_Controller {
 	* @return array
 	*/
 	function query_result_to_array($query_result){
+		//print_debug($query_result);
 		$data = array();
 		if((is_array($query_result))&&(!empty($query_result))){
 			foreach ($query_result as $key => $value) {
 				# code...
 				$data[] = array(
-								'id_usuario'      => $value['id_usuario'],
-								'id_personal'     => $value['id_personal'],
+								'id_usuario'      => ($value['id_usuario'])?$value['id_usuario']:'',
+								'id_personal'     => ($value['id_personal'])?$value['id_personal']:'',
 								'name'            => strtoupper($value['name']),
 								'nombre'          => ucfirst(strtolower($value['nombre'])),
 								'paterno'         => ucfirst(strtolower($value['paterno'])),
 								'materno'         => ucfirst(strtolower($value['materno'])),
-								'user_telefono'   => $value['user_telefono'],
-								'mail'            => $value['mail'],
-								'avatar_user'     => $value['avatar_user'],
-								'id_pais'         => $value['id_pais'],
-								'pais'            => $value['pais'],
-								'dominio'         => $value['dominio'],
-								'avatar_pais'     => $value['avatar_pais'],
-								'moneda' 	      => $value['moneda'],
-								'id_empresa'      => $value['id_empresa'],
-								'empresa'         => $value['empresa'],
-								'razon_social'    => $value['razon_social'],
-								'rfc'             => $value['rfc'],
-								'direccion'       => $value['direccion'],
-								'telefono'        => $value['telefono'],
-								'id_sucursal'     => $value['id_sucursal'],
-								'id_puesto'       => $value['id_puesto'],
-								'id_area'         => $value['id_area'],
-								'area'            => $value['area'],
-								'puesto'          => $value['puesto'],
-								'sucursal'        => $value['sucursal'],
-								'id_perfil'       => $value['id_perfil'],
-								'perfil'          => $value['perfil'],
-								'user_sucursales' => trim($value['user_id_sucursales'], ','),
+								'user_telefono'   => ($value['user_telefono'])?$value['user_telefono']:'',
+								'mail'            => ($value['mail'])?$value['mail']:'',
+								'avatar_user'     => ($value['avatar_user'])?$value['avatar_user']:'',
+								'id_pais'         => ($value['id_pais'])?$value['id_pais']:'',
+								'pais'            => ($value['pais'])?$value['pais']:'',
+								'dominio'         => ($value['dominio'])?$value['dominio']:'',
+								'avatar_pais'     => ($value['avatar_pais'])?$value['avatar_pais']:'',
+								'moneda' 	      => ($value['moneda'])?$value['moneda']:'',
+								'id_empresa'      => ($value['id_empresa'])?$value['id_empresa']:'',
+								'empresa'         => ($value['empresa'])?$value['empresa']:'',
+								'razon_social'    => ($value['razon_social'])?$value['razon_social']:'',
+								'rfc'             => ($value['rfc'])?$value['rfc']:'',
+								'direccion'       => ($value['direccion'])?$value['direccion']:'',
+								'telefono'        => ($value['telefono'])?$value['telefono']:'',
+								'id_sucursal'     => ($value['id_sucursal'])?$value['id_sucursal']:'',
+								'id_puesto'       => ($value['id_puesto'])?$value['id_puesto']:'',
+								'id_area'         => ($value['id_area'])?$value['id_area']:'',
+								'area'            => ($value['area'])?$value['area']:'',
+								'puesto'          => ($value['puesto'])?$value['area']:'',
+								'sucursal'        => ($value['sucursal'])?$$value['sucursal']:'',
+								'id_perfil'       => ($value['id_perfil'])?$value['id_perfil']:'',
+								'perfil'          => ($value['perfil'])?$value['perfil']:'',
+								'user_sucursales' => ($value['user_id_sucursales'])?trim($value['user_id_sucursales'], ','):'',
 								'id_menu_n1'      => ($value['user_id_menu_n1']!='') ? trim($value['user_id_menu_n1'],',') : trim($value['id_menu_n1'],','),//trim(trim($value['id_menu_n1'],',').','.trim($value['user_id_menu_n1'],','),','),
 								'id_menu_n2'      => ($value['user_id_menu_n2']!='') ? trim($value['user_id_menu_n2'],',') : trim($value['id_menu_n2'],','),//trim(trim($value['id_menu_n2'],',').','.trim($value['user_id_menu_n2'],','),','),
 								'id_menu_n3'      => ($value['user_id_menu_n3']!='') ? trim($value['user_id_menu_n3'],',') : trim($value['id_menu_n3'],','),//trim(trim($value['id_menu_n3'],',').','.trim($value['user_id_menu_n3'],','),','),
-								'timestamp'       => $value['timestamp'],
-								'activo'          => $value['activo'],
-								'user'            => $value['user'],
+								'timestamp'       => ($value['timestamp'])?$value['timestamp']:'',
+								'activo'          => ($value['activo'])?$value['activo']:'',
+								'user'            => ($value['user'])?$value['activo']:'',
 								'is_logged'       => true
 						);
 			}

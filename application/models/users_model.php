@@ -75,7 +75,6 @@ class users_model extends Pi_Model{
     * @return array
     */
 	public function search_user_for_id($id_user){
-		
 		$tbl    = $this->tbl;
 		$query  = "	SELECT 
 						U.id_usuario
