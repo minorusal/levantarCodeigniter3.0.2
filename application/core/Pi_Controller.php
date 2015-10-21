@@ -5,7 +5,7 @@ class Pi_Controller extends CI_Controller {
 
     public function __construct(){
         parent::__construct();
-       // $this->removeCache();
+        $this->removeCache();
         $this->lang_load("system","es_ES");
         $this->lang_load("navigate");
         if($this->session->userdata('is_logged')){
@@ -68,6 +68,17 @@ class Pi_Controller extends CI_Controller {
 		$this->parser->parse('login.html', $data);
 	}
 
+    /**
+    * Evalua si el perfil usuario corresponde al root
+    * del sistema
+    * @return void
+    */
+
+    public function root_available(){
+        
+        return (md5(strtolower($this->session->userdata('perfil')))=='63a9f0ea7bb98050796b649e85481845') ? true : false;
+    }
+
 	/**
     * Devuelve el item de idioma con respecto al indice $index
     * @param int $index
@@ -82,6 +93,18 @@ class Pi_Controller extends CI_Controller {
     		$lang_item = text_format_tpl($lang_item);
     	}
     	return $lang_item;
+    }
+
+    /**
+    * Finalizar la sesion activa
+    * @return void
+    */
+    public function logout($redirect = true){
+        $this->load_database('global_system');
+        $this->session->sess_destroy();
+        if($redirect){
+            redirect('login');  
+        }
     }
 
     /**
@@ -111,6 +134,17 @@ class Pi_Controller extends CI_Controller {
                 return true;
             }
         }
+    }
+
+    /**
+    * elimina el cache almacenado
+    * @return void
+    */
+    public function removeCache(){
+        $this->output->set_header('Last-Modified:'.gmdate('D, d M Y H:i:s').'GMT');
+        $this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate');
+        $this->output->set_header('Cache-Control: post-check=0, pre-check=0',false);
+        $this->output->set_header('Pragma: no-cache');
     }
 } 
 ?>
